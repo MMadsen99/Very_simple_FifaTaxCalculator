@@ -24,19 +24,21 @@ public class Controller {
     @FXML
     private TextArea ThirdTextArea;
 
-    public void SaveInInventory(){
+    public void saveInInventory(){
 
         String first = FirstTextField.getText();
         String second = SecondTextField.getText();
         String third = ThirdTextField.getText();
 
-        FirstTextArea.appendText(first + "\n");
-        SecondTextArea.appendText(second + "\n");
-        ThirdTextArea.appendText(third + "\n");
+        FirstTextArea.appendText(first + ", " + " " + second + ", " + " " + third );
+
 
         FirstTextField.clear();
         SecondTextField.clear();
         ThirdTextField.clear();
+    }
+    public void clearInventory(){
+        FirstTextArea.clear();
     }
 }
 
