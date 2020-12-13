@@ -1,44 +1,65 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.StringReader;
+
 public class Controller {
 
     @FXML
-    private TextField FirstTextField;
+    private TextField NavnTextField;
 
     @FXML
-    private TextField SecondTextField;
+    private TextField KobsPrisTextField;
 
     @FXML
-    private TextField ThirdTextField;
+    private TextField AntalTextField;
 
     @FXML
-    private TextArea FirstTextArea;
+    private TextField SalgsPrisTextField;
 
     @FXML
-    private TextArea SecondTextArea;
+    private TextField ProfitTextField;
+
+
+    //Tax from fifa FUT (5%)
+    final double TAX = 0.05;
+   // String profitString = ProfitTextField.getText();
+    //int currentProfit = Integer.parseInt(profitString);
 
     @FXML
-    private TextArea ThirdTextArea;
+    void beregnProfit(ActionEvent event) {
 
-    public void saveInInventory(){
+        //Buy price
+        String buyPriceString = KobsPrisTextField.getText();
 
-        String first = FirstTextField.getText();
-        String second = SecondTextField.getText();
-        String third = ThirdTextField.getText();
+        //Sell price
+        String sellPriceString = SalgsPrisTextField.getText();
 
-        FirstTextArea.appendText(first + ", " + " " + second + ", " + " " + third );
+        //Number of players
+        String Nop = AntalTextField.getText();
+
+        int sellPriceInt = Integer.parseInt(sellPriceString);
+        int buyPriceInt = Integer.parseInt(buyPriceString);
+        int nopInt = Integer.parseInt(Nop);
+
+        int taxLoss = (int) (sellPriceInt * TAX);
+
+        int profitAfterTax = sellPriceInt - taxLoss;
+
+        int profit = (profitAfterTax - buyPriceInt);
+
+        ProfitTextField.setText(String.valueOf(profit * nopInt ));
 
 
-        FirstTextField.clear();
-        SecondTextField.clear();
-        ThirdTextField.clear();
     }
-    public void clearInventory(){
-        FirstTextArea.clear();
+
+    @FXML
+    void clearInventory(ActionEvent event) {
+
     }
+
 }
-
