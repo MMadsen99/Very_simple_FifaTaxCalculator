@@ -23,16 +23,19 @@ public class Controller {
 
     @FXML
     private TextField ProfitTextField;
+    @FXML
+    private TextField TOTALPROFIT;
+
+    @FXML
+    private TextArea log;
 
 
     //Tax from fifa FUT (5%)
     final double TAX = 0.05;
-   // String profitString = ProfitTextField.getText();
-    //int currentProfit = Integer.parseInt(profitString);
+    int startProfit = 0;
 
     @FXML
-    void beregnProfit(ActionEvent event) {
-
+    public void beregnProfit(ActionEvent event) {
         //Buy price
         String buyPriceString = KobsPrisTextField.getText();
 
@@ -42,23 +45,32 @@ public class Controller {
         //Number of players
         String Nop = AntalTextField.getText();
 
+        //Player name
+        String playerName = NavnTextField.getText();
+
+        // converting the strings to ints so i can use them in the calculation
         int sellPriceInt = Integer.parseInt(sellPriceString);
         int buyPriceInt = Integer.parseInt(buyPriceString);
         int nopInt = Integer.parseInt(Nop);
 
+        // claculation the profit or loss after tax
         int taxLoss = (int) (sellPriceInt * TAX);
 
         int profitAfterTax = sellPriceInt - taxLoss;
 
-        int profit = (profitAfterTax - buyPriceInt);
+         int profit = (profitAfterTax - buyPriceInt);
 
         ProfitTextField.setText(String.valueOf(profit * nopInt ));
 
-
+        log.appendText(Nop + " x " + playerName +"  PROFIT = " + profit * nopInt + "\n");
+        TOTALPROFIT.setText(String.valueOf(startProfit + (profit*nopInt)));
     }
 
     @FXML
-    void clearInventory(ActionEvent event) {
+    void clearLog(ActionEvent event) {
+
+        log.clear();
+        TOTALPROFIT.clear();
 
     }
 
