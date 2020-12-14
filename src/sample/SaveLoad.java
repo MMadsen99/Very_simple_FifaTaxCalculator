@@ -22,11 +22,12 @@ public class SaveLoad {
 
     }
     public void load() throws FileNotFoundException {
-
+       Controller controller = new Controller();
         java.io.File file = new java.io.File("src/saveFile.txt");
         try{
             Scanner input = new Scanner(file);
             int loadSum = input.nextInt();
+            controller.sum = loadSum;
 
             input.close();
 

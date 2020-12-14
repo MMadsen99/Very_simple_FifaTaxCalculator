@@ -35,7 +35,8 @@ public class Controller {
     //Tax from fifa FUT (5%)
     final double TAX = 0.05;
     int startProfit = 0;
-    int sum = 0;
+    public int sum = 0;
+
 
     @FXML
     public void beregnProfit(ActionEvent event) {
@@ -64,7 +65,7 @@ public class Controller {
          int profitBeforeNop = (profitAfterTax - buyPriceInt);
 
          int profit = profitBeforeNop * nopInt;
-         sum = sum + profit;
+          sum = sum + profit;
         ProfitTextField.setText(String.valueOf(profit));
 
         log.appendText(Nop + " x " + playerName +"  PROFIT = " + sum + "\n");
@@ -78,7 +79,9 @@ public class Controller {
 
         log.clear();
         TOTALPROFIT.clear();
-
+    /*TODO Save og load bruger den globale int sum (som er 0)
+      TODO i stedet for den opdaterede inde i controller metoden( code linje 68)
+     */
     }
     public void save() throws IOException {
         SaveLoad saveLoad = new SaveLoad();
@@ -88,7 +91,7 @@ public class Controller {
     public void load() throws FileNotFoundException {
         SaveLoad saveLoad = new SaveLoad();
         saveLoad.load();
-        TOTALPROFIT.setText(String.valueOf(saveLoad.loadSum));
+       TOTALPROFIT.setText(String.valueOf(saveLoad.loadSum));
 
     }
 
