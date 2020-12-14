@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.StringReader;
 
 public class Controller {
@@ -33,6 +35,7 @@ public class Controller {
     //Tax from fifa FUT (5%)
     final double TAX = 0.05;
     int startProfit = 0;
+    int sum = 0;
 
     @FXML
     public void beregnProfit(ActionEvent event) {
@@ -58,12 +61,16 @@ public class Controller {
 
         int profitAfterTax = sellPriceInt - taxLoss;
 
-         int profit = (profitAfterTax - buyPriceInt);
+         int profitBeforeNop = (profitAfterTax - buyPriceInt);
 
-        ProfitTextField.setText(String.valueOf(profit * nopInt ));
+         int profit = profitBeforeNop * nopInt;
+         sum = sum + profit;
+        ProfitTextField.setText(String.valueOf(profit));
 
-        log.appendText(Nop + " x " + playerName +"  PROFIT = " + profit * nopInt + "\n");
-        TOTALPROFIT.setText(String.valueOf(startProfit + (profit*nopInt)));
+        log.appendText(Nop + " x " + playerName +"  PROFIT = " + sum + "\n");
+        TOTALPROFIT.setText(String.valueOf(sum));
+
+        
     }
 
     @FXML
@@ -73,5 +80,18 @@ public class Controller {
         TOTALPROFIT.clear();
 
     }
+    public void save() throws IOException {
+        SaveLoad saveLoad = new SaveLoad();
+        saveLoad.save();
+
+    }
+    public void load() throws FileNotFoundException {
+        SaveLoad saveLoad = new SaveLoad();
+        saveLoad.load();
+        TOTALPROFIT.setText(String.valueOf(saveLoad.loadSum));
+
+    }
+
+
 
 }
