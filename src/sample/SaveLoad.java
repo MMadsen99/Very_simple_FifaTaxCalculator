@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class SaveLoad {
-    int loadSum;
+    static int loadSum;
     public void save() throws IOException {
         Controller controller = new Controller();
 
@@ -26,8 +26,8 @@ public class SaveLoad {
         java.io.File file = new java.io.File("src/saveFile.txt");
         try{
             Scanner input = new Scanner(file);
-            int loadSum = input.nextInt();
-            controller.sum = loadSum;
+            loadSum = input.nextInt();
+            System.out.println(loadSum);
 
             input.close();
 
