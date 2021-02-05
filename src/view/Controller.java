@@ -1,32 +1,19 @@
-package sample;
+package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import logik.SaveLoad;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.StringReader;
 
 public class Controller {
 
     @FXML
-    private TextField NavnTextField;
-
-    @FXML
-    private TextField KobsPrisTextField;
-
-    @FXML
-    private TextField AntalTextField;
-
-    @FXML
-    private TextField SalgsPrisTextField;
-
-    @FXML
-    private TextField ProfitTextField;
-    @FXML
-    private TextField TOTALPROFIT;
+    private TextField NavnTextField, KobsPrisTextField, AntalTextField,
+                     SalgsPrisTextField, ProfitTextField, TOTALPROFIT;
 
     @FXML
     private TextArea log;
@@ -34,8 +21,8 @@ public class Controller {
 
     //Tax from fifa FUT (5%)
     final double TAX = 0.05;
-    int startProfit = 0;
-    static int sum = 0;
+   // int startProfit = 0;
+     public static int sum = 0;
 
 
     @FXML

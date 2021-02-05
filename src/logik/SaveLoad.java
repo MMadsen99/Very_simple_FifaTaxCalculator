@@ -1,11 +1,13 @@
-package sample;
+package logik;
+
+import view.Controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class SaveLoad {
-    static int loadSum;
+     public static int loadSum;
     public void save() throws IOException {
         Controller controller = new Controller();
 
